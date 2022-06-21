@@ -1,2 +1,2 @@
 # DAT108-Programering
-DAT108 Programmering og Webapplikasjoner
+Prosjekter og oppgaver i faget DAT108 Programmering og Webapplikasjoner
