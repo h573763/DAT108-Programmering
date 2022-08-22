@@ -1,4 +1,4 @@
-package hvl.dat108.dat108;
+package no.hvl.dat108;
 
 public class Main extends Thread{
 
