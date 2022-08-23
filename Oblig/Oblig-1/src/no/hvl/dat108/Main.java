@@ -24,10 +24,14 @@ public class Main extends Thread{
             }.start();
             //Thread end
 
-//hey dette er en skikkelig kul test.
+        //hey dette er en skikkelig kul test.
         }
+        System.out.println(add(2, 5));
         //Call outside the threads
         System.out.println("this is also outside the thread");
 
+    }
+    private static int add(int a, int b){
+        return a + b;
     }
 }
