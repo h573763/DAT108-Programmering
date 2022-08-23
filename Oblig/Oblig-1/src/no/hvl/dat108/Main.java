@@ -27,7 +27,6 @@ public class Main extends Thread{
 //hey dette er en skikkelig kul test.
         }
         //Call outside the threads
-        System.out.println("this is also outside the thread");
 
     }
 }
