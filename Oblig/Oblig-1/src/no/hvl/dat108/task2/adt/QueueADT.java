@@ -5,4 +5,5 @@ public interface QueueADT<T> {
     void enQueue(T element);
     T deQueue();
     boolean isEmpty();
+    int size();
 }

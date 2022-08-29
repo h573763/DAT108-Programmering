@@ -44,4 +44,8 @@ public class Queue<T> implements QueueADT<T> {
     public boolean isEmpty() {
         return count == 0;
     }
+    @Override
+    public int size(){
+        return count;
+    }
 }
