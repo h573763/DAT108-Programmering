@@ -8,29 +8,32 @@ public class HamburgerTray{
     public HamburgerTray(Queue<Hamburger> tray){
         this.burgerTray = tray;
     }
-    public void add(Hamburger burger){
+    public synchronized void add(Hamburger burger){
 
-        if(burgerTray.size() < trayMax){
+//        if(burgerTray.size() < trayMax){
             burgerTray.enQueue(burger);
             System.out.println("" + burger.getName());
             System.out.println(burgerTray.size());
-        }else{
-            System.out.println("The tray is full"); // senere legg stop
-        }
+
+//        }else{//           System.out.println("The tray is full"); // senere legg stop
+//        }
     }
-    public Hamburger remove(){
-        if(!burgerTray.isEmpty()){
-            return burgerTray.deQueue();
-        }
-        else{
-            System.out.println("The tray is empty");
-        }
-        return null;
+    public synchronized Hamburger remove(){
+        //if(!burgerTray.isEmpty()){
+        return burgerTray.deQueue();
+        //}
+        //else{
+            //System.out.println("The tray is empty");
     }
     public void setMaxCap(int cap){
         this.trayMax = cap;
     }
-    private int getMaxCap(){
+    public int getMaxCap(){
         return this.trayMax;
     }
+
+    public int getSize(){
+        return burgerTray.size();
+    }
+
 }//class
