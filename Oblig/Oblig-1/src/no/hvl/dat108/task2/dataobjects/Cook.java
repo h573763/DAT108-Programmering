@@ -12,10 +12,10 @@ public class Cook{
         this.name = name;
         this.burgerTray = burgerTray;
     }
-    public synchronized void makeOrder(Hamburger burger){
+    public synchronized void makeOrder(Hamburger burger){//kun en tråd kan legge til burger av gangen
 
         if(burgerTray.size() < burgerTray.getLim()) {
-            burgerTray.enQueue(burger);
+            burgerTray.enQueue(burger);//legger til burger i køen
             System.out.println("Cook " + name + " is adding a " + burger.getName() + " traycount: " + burgerTray.size());
 
         }else{

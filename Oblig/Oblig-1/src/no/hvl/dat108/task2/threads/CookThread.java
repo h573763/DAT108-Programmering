@@ -16,7 +16,7 @@ public class CookThread extends Thread {
 //    private Hamburger hamburger;
 //
 //    @Override
-//    public void run() {
+ //   public void run() {
 //        while (true) {
 //            cook.makeOrder(hamburger);
 //            if (burgerQueue.size() == burgerQueue.getLim()) {

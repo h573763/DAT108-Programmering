@@ -3,9 +3,11 @@ package no.hvl.dat108.task2.adt;
 public class Queue<T> implements QueueADT<T> {
 
     private int count;
+    private int lim;
     private LinearNode<T> head, tail;
 
-    public Queue(){
+    public Queue(int lim){
+        this.lim = lim;
         count = 0;
         head = tail = null;
     }
@@ -28,7 +30,7 @@ public class Queue<T> implements QueueADT<T> {
 
         if(isEmpty())
             throw new RuntimeException();
-            //throw an exception
+        //throw an exception
 
         T result = head.getElement();
         head = head.getNext();
@@ -47,5 +49,9 @@ public class Queue<T> implements QueueADT<T> {
     @Override
     public int size(){
         return count;
+    }
+
+    public int getLim() {
+        return lim;
     }
 }
