@@ -5,6 +5,7 @@ public class Hamburger {
     public Hamburger() {
         this.name = "Hamburger";
     }
+
     public String getName(){
         return this.name;
     }
