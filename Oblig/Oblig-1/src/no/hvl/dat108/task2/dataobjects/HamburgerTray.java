@@ -8,12 +8,13 @@ public class HamburgerTray{
     public HamburgerTray(Queue<Hamburger> tray){
         this.burgerTray = tray;
     }
+
     public synchronized void add(Hamburger burger){
 
 //        if(burgerTray.size() < trayMax){
-            burgerTray.enQueue(burger);
-            System.out.println("" + burger.getName());
-            System.out.println(burgerTray.size());
+        burgerTray.enQueue(burger);
+        System.out.println("" + burger.getName());
+        System.out.println(burgerTray.size());
 
 //        }else{//           System.out.println("The tray is full"); // senere legg stop
 //        }
@@ -23,7 +24,7 @@ public class HamburgerTray{
         return burgerTray.deQueue();
         //}
         //else{
-            //System.out.println("The tray is empty");
+        //System.out.println("The tray is empty");
     }
     public void setMaxCap(int cap){
         this.trayMax = cap;
@@ -31,7 +32,6 @@ public class HamburgerTray{
     public int getMaxCap(){
         return this.trayMax;
     }
-
     public int getSize(){
         return burgerTray.size();
     }
