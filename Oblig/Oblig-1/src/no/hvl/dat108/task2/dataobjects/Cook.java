@@ -16,7 +16,7 @@ public class Cook{
 
         if(burgerTray.size() < burgerTray.getLim()) {
             burgerTray.enQueue(burger);//legger til burger i køen
-            System.out.println("Cook " + name + " is adding a " + burger.getName() + " traycount: " + burgerTray.size());
+            System.out.println("Cook " + name + " is adding burger: " + burger.getId() + " traycount: " + burgerTray.size());
 
         }else{
             System.out.println("The tray is full " + name + " cannot make a burger");

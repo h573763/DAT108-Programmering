@@ -10,11 +10,11 @@ public class Service extends Main {
         this.name = name;
         this.tray = tray;
     }
-    public synchronized void deliver(){ //kun en servitør kan lever burger av gangen
+    public synchronized void deliver(Hamburger burger){ //kun en servitør kan lever burger av gangen
 
-        if(burgers>0){ //så lenge køen ikke er tom
+        if(!(tray.isEmpty())){ //så lenge køen ikke er tom
             tray.deQueue(); //fjern øverste burger i fra køen
-            System.out.println("Server " + name + " is serving a burger, traycount: " + tray.size());
+            System.out.println("Server " + name + " is serving a burger: " + burger.getId() + " traycount: " + tray.size());
         }else{
             System.out.println("The tray is empty " + name + " cannot serve a burger");
         }
