@@ -1,7 +1,13 @@
+---> DO NOT COMMIT FILES IN MORE THAN ONE PACKAGE AT A TIME <---
+
 ## Describe your changes
+--->
 
+<---
 ## Please provide which files that as been updated
+--->
 
+<---
 ## Checklist before requesting a review
 - [ ] I have performed a self-review of my code
 - [ ] I have made propper documentation for the changes I commited. 
