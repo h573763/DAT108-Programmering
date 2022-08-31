@@ -6,4 +6,5 @@ public interface QueueADT<T> {
     T deQueue();
     boolean isEmpty();
     int size();
+    T first();
 }
