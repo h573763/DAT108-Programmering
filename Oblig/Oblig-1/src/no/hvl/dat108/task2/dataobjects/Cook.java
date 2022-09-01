@@ -9,15 +9,13 @@ public class Cook {
     public Cook(String name, Queue<Hamburger> burgerTray) {
         this.name = name;
         this.burgerTray = burgerTray;
-    }
-
-    public synchronized void makeOrder(Hamburger burger) {//kun en tråd kan legge til burger av gangen
-        burgerTray.enQueue(burger);//legger til burger i køen
+    }//constructor
+    public synchronized void makeOrder(Hamburger burger) {
+        //legger til burger i køen
+        burgerTray.enQueue(burger);
         System.out.println("Cook " + name + " is adding burger: " + burger.getId() + " traycount: " + burgerTray.size());
-
     }
-
     public String getName() {
         return name;
     }
-}
+}//class

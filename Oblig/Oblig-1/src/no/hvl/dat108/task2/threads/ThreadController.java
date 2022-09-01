@@ -4,7 +4,6 @@ import no.hvl.dat108.task2.adt.Queue;
 import no.hvl.dat108.task2.dataobjects.Cook;
 import no.hvl.dat108.task2.dataobjects.Hamburger;
 import no.hvl.dat108.task2.dataobjects.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,4 +39,4 @@ public class ThreadController {
             serviceThread.start();
         }
     }
-}
+}//class

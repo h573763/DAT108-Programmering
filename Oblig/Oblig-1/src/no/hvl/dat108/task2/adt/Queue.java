@@ -4,6 +4,7 @@ public class Queue<T> implements QueueADT<T> {
     private int count;
     private int lim;
     private LinearNode<T> head, tail;
+
     public Queue(int lim){
         this.lim = lim;
         count = 0;
@@ -56,5 +57,4 @@ public class Queue<T> implements QueueADT<T> {
     public T first(){
         return head.getElement();
     }
-
-}
+}//class
