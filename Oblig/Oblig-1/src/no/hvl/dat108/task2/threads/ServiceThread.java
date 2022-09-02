@@ -17,20 +17,17 @@ public class ServiceThread extends Thread {
     }
     @Override
     public void run() {
+        int count = 0;
         System.out.println("(Server)" + service.getName() + " is started");
         //I sync med andre servitør tråder
         synchronized (service) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            //evig løkke
-            while (true) {
+            //Ender etter at hver servitør har servert 10 burgre hver
+            while (count <= 5) {
                 //så lenge køen ikke er tom
                 if (!(burgerQueue.isEmpty())) {
                     //ta det øverste elementet i køen
                     service.deliver(burgerQueue.first());
+                    count++;
                     //Vekker alle ventede tråder
                     service.notifyAll();
                     try {
@@ -44,12 +41,13 @@ public class ServiceThread extends Thread {
                     try {
                         System.out.println("The tray is empty, " + service.getName() + " is waiting");
                         //venter til det er elementer i køen
+                        service.notifyAll();
                         service.wait(1000);
                     } catch (InterruptedException e) {
                         System.out.println(e.getMessage());
                     }
                 }
-                service.notifyAll();
+
             }
         }
     }

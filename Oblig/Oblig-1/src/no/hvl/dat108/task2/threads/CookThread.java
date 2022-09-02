@@ -20,15 +20,17 @@ public class CookThread extends Thread {
 
     @Override
     public void run() {
+        int count = 0;
         System.out.println("(Cook) " + cook.getName() + " is started");
         //I sync med andre kokke råder
         synchronized (cook) {
-            //evig løkke
-            while (true) {
+            //ender etter at hver kokk har laget ti burgere hver
+            while (count <= 5) {
                 if (burgerQueue.size() < burgerQueue.getLim()) {
                     hamburger = new Hamburger();
                     //legger til en burger dersom det er plass
                     cook.makeOrder(hamburger);
+                    count++;
                     //vekker opp alle ventende tråder
                     cook.notifyAll();
                     try {
@@ -41,13 +43,13 @@ public class CookThread extends Thread {
                 } else {
                     try {
                         System.out.println("The tray is full, " + cook.getName() + " is waiting");
+                        cook.notifyAll();
                         //Venter til det er plass i køen
                         cook.wait(1000);
                     } catch (InterruptedException e) {
                         System.out.println(e.getMessage());
                     }
                 }
-                cook.notifyAll();
             }
         }
     }
