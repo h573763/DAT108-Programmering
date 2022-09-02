@@ -6,8 +6,8 @@ import no.hvl.dat108.task2.dataobjects.Service;
 
 import java.util.Random;
 public class ServiceThread extends Thread {
-    private final Queue<Hamburger> burgerQueue;
-    private final Service service;
+    public Queue<Hamburger> burgerQueue;
+    public Service service;
     private final Random random;
 
     public ServiceThread(Queue<Hamburger> burgerQueue, Service service) {
@@ -29,7 +29,6 @@ public class ServiceThread extends Thread {
                     service.deliver(burgerQueue.first());
                     count++;
                     //Vekker alle ventede tråder
-                    service.notifyAll();
                     try {
                         //sleeps etter å ha fjernet en burger
                         Thread.sleep(random.nextInt(2000, 5000));

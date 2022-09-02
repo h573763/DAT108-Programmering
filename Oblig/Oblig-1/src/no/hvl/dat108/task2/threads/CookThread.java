@@ -32,7 +32,6 @@ public class CookThread extends Thread {
                     cook.makeOrder(hamburger);
                     count++;
                     //vekker opp alle ventende tråder
-                    cook.notifyAll();
                     try {
                         //sleeps etter å ha lagt til en burger
                         Thread.sleep(random.nextInt(2000, 5000));
