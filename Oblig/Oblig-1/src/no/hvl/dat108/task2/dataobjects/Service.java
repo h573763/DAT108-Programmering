@@ -8,7 +8,7 @@ public class Service {
         this.name = name;
         this.tray = tray;
     }//constructor
-    public synchronized void deliver(Hamburger burger) {
+    public void deliver(Hamburger burger) {
         //fjern øverste burger i fra køen
         tray.deQueue();
         System.out.println("Server " + name + " is serving a burger: " + burger.getId() + " traycount: " + tray.size());
