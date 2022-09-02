@@ -37,4 +37,10 @@ public interface QueueADT<T> {
      * @return Det første elementet i køen
      */
     T first();
+
+    /**
+     *
+     * @return Om siste elementet i køen er null eller ikke
+     */
+    boolean isNull();
 }//interface

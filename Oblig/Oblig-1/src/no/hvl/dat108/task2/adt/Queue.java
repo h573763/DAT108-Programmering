@@ -57,4 +57,8 @@ public class Queue<T> implements QueueADT<T> {
     public T first(){
         return head.getElement();
     }
+    @Override
+    public boolean isNull(){
+        return tail == null;
+    }
 }//class
