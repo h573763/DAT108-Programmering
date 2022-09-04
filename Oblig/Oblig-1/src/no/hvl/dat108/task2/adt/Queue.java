@@ -50,6 +50,7 @@ public class Queue<T> implements QueueADT<T> {
     public int size(){
         return count;
     }
+    @Override
     public int getLim() {
         return lim;
     }

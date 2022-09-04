@@ -33,11 +33,14 @@ public interface QueueADT<T> {
      */
     int size();
     /**
+     * @return begrensingen i køen
+     */
+    int getLim();
+    /**
      *
      * @return Det første elementet i køen
      */
     T first();
-
     /**
      *
      * @return Om siste elementet i køen er null eller ikke
