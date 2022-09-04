@@ -34,6 +34,7 @@ public class ThreadController {
         for (Cook cooks : cookList) {
             CookThread cookThread = new CookThread(burgerQueue, cooks);
             try {
+                //Sleeper hver tråd før de starter for å hindre kollisjoner
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -43,6 +44,7 @@ public class ThreadController {
         for (Service service : serviceList) {
             ServiceThread serviceThread = new ServiceThread(burgerQueue, service);
             try {
+                //Sleeper hver tråd før de starter for å hindre kollisjoner
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
