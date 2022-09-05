@@ -5,6 +5,9 @@ import no.hvl.dat108.task2.adt.Queue;
 public class Service{
     private String name;
     private Queue<Hamburger> tray;
+    public Service(String name){
+        this.name = name;
+    }
     public Service(String name, Queue<Hamburger> tray) {
         this.name = name;
         this.tray = tray;

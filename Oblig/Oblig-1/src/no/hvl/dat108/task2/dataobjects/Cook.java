@@ -6,6 +6,9 @@ public class Cook {
     private String name;
     private Queue<Hamburger> burgerTray;
 
+    public Cook(String name){
+        this.name = name;
+    }
     public Cook(String name, Queue<Hamburger> burgerTray) {
         this.name = name;
         this.burgerTray = burgerTray;
