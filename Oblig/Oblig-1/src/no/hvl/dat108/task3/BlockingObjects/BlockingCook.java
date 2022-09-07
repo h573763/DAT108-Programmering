@@ -15,8 +15,11 @@ public class BlockingCook extends Cook {
     }
     @Override
     public void makeOrder(Hamburger hamburger){
-        blockingQueue.add(hamburger);
+        try {
+            blockingQueue.put(hamburger);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
         System.out.println("Cook " + super.getName() + " is adding burger: " + hamburger.getId() + " traycount: " + blockingQueue.size());
     }
-
 }

@@ -9,15 +9,18 @@ import java.util.concurrent.BlockingQueue;
 public class BlockingService extends Service {
     private BlockingQueue<Hamburger> blockingQueue;
 
-    public BlockingService(String name, BlockingQueue<Hamburger> blockingQueue){
+    public BlockingService(String name, BlockingQueue<Hamburger> blockingQueue) {
         super(name);
         this.blockingQueue = blockingQueue;
     }
+
     @Override
-    public void deliver(Hamburger burger) {
-        if (!(blockingQueue.isEmpty())) {
-            blockingQueue.remove(burger);
-            System.out.println("Server " + super.getName() + " is serving a burger: " + burger.getId() + " traycount: " + blockingQueue.size());
+    public synchronized void deliver(Hamburger burger) {
+        try {
+            blockingQueue.take();
+        }catch (InterruptedException e){
+            e.printStackTrace();
         }
+        System.out.println("Server " + super.getName() + " is serving a burger: " + burger.getId() + " traycount: " + blockingQueue.size());
     }
 }
