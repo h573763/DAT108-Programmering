@@ -20,17 +20,15 @@ public class CookThread extends Thread {
 
     @Override
     public void run() {
-        int count = 0;
         System.out.println("(Cook) " + cook.getName() + " is started");
         //I sync med andre kokke råder
         synchronized (cook) {
             //ender etter at hver kokk har laget ti burgere hver
-            while (count <= 5) {
+            while (true) {
                 if (burgerQueue.size() < burgerQueue.getLim()) {
                     hamburger = new Hamburger();
                     //legger til en burger dersom det er plass
                     cook.makeOrder(hamburger);
-                    count++;
                     //vekker opp alle ventende tråder
                     try {
                         //sleeps etter å ha lagt til en burger

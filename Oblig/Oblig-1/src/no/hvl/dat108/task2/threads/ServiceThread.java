@@ -17,17 +17,15 @@ public class ServiceThread extends Thread {
     }
     @Override
     public void run() {
-        int count = 0;
         System.out.println("(Server)" + service.getName() + " is started");
         //I sync med andre servitør tråder
         synchronized (service) {
             //Ender etter at hver servitør har servert 10 burgre hver
-            while (count <= 5) {
+            while (true) {
                 //så lenge køen ikke er tom
                 if (!(burgerQueue.isEmpty())) {
                     //ta det øverste elementet i køen
                     service.deliver(burgerQueue.first());
-                    count++;
                     //Vekker alle ventede tråder
                     try {
                         //sleeps etter å ha fjernet en burger

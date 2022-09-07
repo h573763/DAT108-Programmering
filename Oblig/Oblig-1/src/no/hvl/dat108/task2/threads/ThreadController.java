@@ -20,12 +20,11 @@ public class ThreadController {
 
         Service henrik = new Service("Henrik", burgerQueue);
         Service joachim = new Service("Joachim", burgerQueue);
-        Service mia = new Service("Mia", burgerQueue);
+
 
 
         serviceList.add(henrik);
         serviceList.add(joachim);
-        serviceList.add(mia);
 
         cookList.add(anna);
         cookList.add(carl);
@@ -35,21 +34,23 @@ public class ThreadController {
             CookThread cookThread = new CookThread(burgerQueue, cooks);
             try {
                 //Sleeper hver tråd før de starter for å hindre kollisjoner
-                Thread.sleep(1000);
+                Thread.sleep(100);
+                cookThread.start();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            cookThread.start();
+
         }
         for (Service service : serviceList) {
             ServiceThread serviceThread = new ServiceThread(burgerQueue, service);
             try {
                 //Sleeper hver tråd før de starter for å hindre kollisjoner
-                Thread.sleep(1000);
+                Thread.sleep(100);
+                serviceThread.start();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            serviceThread.start();
+
         }
     }
 }//class
