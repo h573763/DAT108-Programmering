@@ -6,8 +6,8 @@ import no.hvl.dat108.task3.BlockingObjects.BlockingService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class BlockingThreadController {
 
@@ -15,7 +15,7 @@ public class BlockingThreadController {
     private static List<BlockingService> serviceList = new ArrayList<>();
 
     public static void menu(){
-        BlockingQueue<Hamburger> queue = new LinkedBlockingQueue<>(4);
+        BlockingQueue<Hamburger> queue = new ArrayBlockingQueue<>(3);
         BlockingCook carl = new BlockingCook("Carl", queue);
         BlockingCook hans = new BlockingCook("Hans", queue);
         BlockingCook maira = new BlockingCook("Maria", queue);
@@ -26,19 +26,30 @@ public class BlockingThreadController {
 
         BlockingService mia = new BlockingService("mia", queue);
         BlockingService henrik = new BlockingService("Henrik", queue);
-        BlockingService gudrun = new BlockingService("Grudrun", queue);
 
         serviceList.add(mia);
         serviceList.add(henrik);
-//        serviceList.add(gudrun);
 
         for(BlockingCook cook : cookList){
             BlockingCookThread cookThread = new BlockingCookThread(queue, cook);
-            cookThread.start();
+            try{
+                //Vi hindrer at trådene starter nøyaktig samtidig, men med 100 ms sekunder mellomrom
+                Thread.sleep(1);
+                cookThread.start();
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
         }
         for(BlockingService service : serviceList){
             BlockingServiceThread serviceThread = new BlockingServiceThread(queue, service);
-            serviceThread.start();
+            try{
+                //Vi hindrer at trådene starter nøyaktig samtidig, men med 100 ms sekunder mellomrom
+                Thread.sleep(1);
+                serviceThread.start();
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -22,7 +22,6 @@ public class BlockingCookThread extends Thread{
     @Override
     public void run(){
         while (true){
-
             if ((blockingQueue.size() < this.totalCapacity)) {
                 hamburger = new Hamburger();
                 //legger til en burger dersom det er plass

@@ -21,7 +21,7 @@ public class BlockingServiceThread extends Thread{
     public void run(){
         while(true){
             if(!(blockingQueue.isEmpty())){
-                blockingService.deliver(blockingQueue.poll());
+                blockingService.deliver(blockingQueue.peek());
                 try{
                     Thread.sleep(random.nextInt(2000, 6000));
                 }catch (InterruptedException e){
