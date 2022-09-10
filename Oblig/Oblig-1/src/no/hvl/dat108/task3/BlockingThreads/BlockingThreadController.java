@@ -34,7 +34,7 @@ public class BlockingThreadController {
             BlockingCookThread cookThread = new BlockingCookThread(queue, cook);
             try{
                 //Vi hindrer at trådene starter nøyaktig samtidig, men med 100 ms sekunder mellomrom
-                Thread.sleep(1);
+                Thread.sleep(100);
                 cookThread.start();
             }catch (InterruptedException e){
                 e.printStackTrace();
@@ -45,7 +45,7 @@ public class BlockingThreadController {
             BlockingServiceThread serviceThread = new BlockingServiceThread(queue, service);
             try{
                 //Vi hindrer at trådene starter nøyaktig samtidig, men med 100 ms sekunder mellomrom
-                Thread.sleep(1);
+                Thread.sleep(100);
                 serviceThread.start();
             }catch (InterruptedException e){
                 e.printStackTrace();

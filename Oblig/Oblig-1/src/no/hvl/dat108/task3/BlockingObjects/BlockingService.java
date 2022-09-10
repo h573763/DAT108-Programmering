@@ -15,7 +15,7 @@ public class BlockingService extends Service {
     }
 
     @Override
-    public synchronized void deliver(Hamburger burger) {
+    public void deliver(Hamburger burger) {
         try {
             blockingQueue.take();
         }catch (InterruptedException e){
