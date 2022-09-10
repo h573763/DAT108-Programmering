@@ -27,6 +27,20 @@ public class Queue<T> implements QueueADT<T> {
         count++;
     }
     @Override
+    public T getElement(int i){
+        LinearNode<T> element = head;
+
+        int j = 0;
+        while (j < i) {
+            if(!isEmpty()) {
+                element = element.getNext();
+                j++;
+            }else
+                break;
+        }
+        return element.getElement();
+    }
+    @Override
     public T deQueue() throws RuntimeException{
 
         if(isEmpty())

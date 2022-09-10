@@ -17,6 +17,15 @@ public interface QueueADT<T> {
      * Legges til i køen
      */
     void enQueue(T element);
+
+    /**
+     *
+     * @param index er plassen i køen
+     * @return elementet i køen
+     */
+
+    T getElement(int index);
+
     /**
      *
      * @return elementet som fjernes fra køen
