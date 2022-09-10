@@ -2,30 +2,25 @@ package no.hvl.dat108.task2.dataobjects;
 
 import no.hvl.dat108.task2.adt.Queue;
 
-public class HamburgerTray{
+public class HamburgerTray {
     Queue<Hamburger> burgerTray;
-    private int trayMax;
-    public HamburgerTray(Queue<Hamburger> tray){
+
+    public HamburgerTray(Queue<Hamburger> tray) {
         this.burgerTray = tray;
     }
 
-    public synchronized void add(Hamburger burger){
+    @Override
+    public String toString() {
 
-        burgerTray.enQueue(burger);
-        System.out.println("" + burger.getName());
-        System.out.println(burgerTray.size());
-    }
-    public synchronized Hamburger remove(){
-        return burgerTray.deQueue();
-    }
-    public void setMaxCap(int cap){
-        this.trayMax = cap;
-    }
-    public int getMaxCap(){
-        return this.trayMax;
-    }
-    public int getSize(){
-        return burgerTray.size();
-    }
+        StringBuilder tray = new StringBuilder("[ ");
 
+        for (int i = 0; i < burgerTray.size(); i++) {
+
+            tray.append("{").append(burgerTray.getElement(i).getId()).append("}");
+
+            if (i < burgerTray.size() - 1)
+                tray.append(", ");
+        }
+        return tray.append(" ]").toString();
+    }
 }//class
