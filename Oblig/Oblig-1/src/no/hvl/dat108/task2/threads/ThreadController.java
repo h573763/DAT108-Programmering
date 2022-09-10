@@ -10,47 +10,42 @@ import java.util.List;
 public class ThreadController {
     private static List<Cook> cookList = new ArrayList<>();
     private static List<Service> serviceList = new ArrayList<>();
+    //Denne er global for å kunne brukes som monitor i CookThread og ServiceThread
+    static final Queue<Hamburger> queue = new Queue<>(5);
 
     public static void menu() {
 
-        Queue<Hamburger> burgerQueue = new Queue<>(5);
-        Cook anna = new Cook("Anna", burgerQueue);
-        Cook carl = new Cook("Carl", burgerQueue);
-        Cook chris = new Cook("Chris", burgerQueue);
-
-        Service henrik = new Service("Henrik", burgerQueue);
-        Service joachim = new Service("Joachim", burgerQueue);
-
-
-
-        serviceList.add(henrik);
-        serviceList.add(joachim);
+        Cook anna = new Cook("Anna", queue);
+        Cook carl = new Cook("Carl", queue);
+        Cook chris = new Cook("Chris", queue);
 
         cookList.add(anna);
         cookList.add(carl);
         cookList.add(chris);
 
-        for (Cook cooks : cookList) {
-            CookThread cookThread = new CookThread(burgerQueue, cooks);
-            try {
-                //Sleeper hver tråd før de starter for å hindre kollisjoner
-                Thread.sleep(100);
-                cookThread.start();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        Service henrik = new Service("Henrik", queue);
+        Service joachim = new Service("Joachim", queue);
 
+        serviceList.add(henrik);
+        serviceList.add(joachim);
+
+        for (Cook cooks : cookList) {
+            CookThread cookThread = new CookThread(queue, cooks);
+            try{
+                Thread.sleep(10);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            cookThread.start();
         }
         for (Service service : serviceList) {
-            ServiceThread serviceThread = new ServiceThread(burgerQueue, service);
-            try {
-                //Sleeper hver tråd før de starter for å hindre kollisjoner
-                Thread.sleep(100);
-                serviceThread.start();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            ServiceThread serviceThread = new ServiceThread(queue, service);
+            try{
+                Thread.sleep(10);
+            }catch (InterruptedException e){
+                e.printStackTrace();
             }
-
+            serviceThread.start();
         }
     }
 }//class

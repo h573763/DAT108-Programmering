@@ -21,31 +21,33 @@ public class CookThread extends Thread {
     @Override
     public void run() {
         System.out.println("(Cook) " + cook.getName() + " is started");
-        //I sync med andre kokke råder
-        synchronized (cook) {
-            //ender etter at hver kokk har laget ti burgere hver
-            while (true) {
-                if (burgerQueue.size() < burgerQueue.getLim()) {
-                    hamburger = new Hamburger();
+
+        //ender etter at hver kokk har laget ti burgere hver
+        while (true) {
+            if (burgerQueue.size() < burgerQueue.getLim()) {
+                hamburger = new Hamburger();
+                //I sync med queue i ThreadController
+                synchronized (ThreadController.queue) {
                     //legger til en burger dersom det er plass
                     cook.makeOrder(hamburger);
                     //vekker opp alle ventende tråder
-                    try {
-                        //sleeps etter å ha lagt til en burger
-                        Thread.sleep(random.nextInt(2000, 5000));
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    //dersom tray er full
-                } else {
-                    try {
-                        System.out.println("The tray is full, " + cook.getName() + " is waiting");
-                        cook.notifyAll();
+                    ThreadController.queue.notifyAll();
+                }
+                try {
+                    //sleeps etter å ha lagt til en burger
+                    Thread.sleep(random.nextInt(2000, 5000));
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }//dersom tray er full
+            } else {
+                try {
+                    System.out.println("The tray is full, " + cook.getName() + " is waiting");
+                    synchronized (ThreadController.queue) {
                         //Venter til det er plass i køen
-                        cook.wait(1000);
-                    } catch (InterruptedException e) {
-                        System.out.println(e.getMessage());
+                        ThreadController.queue.wait();
                     }
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
                 }
             }
         }
