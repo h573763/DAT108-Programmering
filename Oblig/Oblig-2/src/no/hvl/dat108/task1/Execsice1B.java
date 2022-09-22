@@ -1,25 +1,17 @@
 package no.hvl.dat108.task1;
 
+import java.util.function.BiFunction;
+
 public class Execsice1B {
     public static void main(String[] args) {
-        double result = calculate(2, 4, () -> "ADD");
-        System.out.println(result);
-    }
-    private static double calculate(double a, double b, Claculate calculation){
-        if(calculation == Calculation.ADD)
-            return a + b;
-        else if(calculation.equals("MINUS"))
-            return a - b;
-        else if(calculation.equals("MULTIPY"))
-            return a * b;
-        else if(calculation.equals("DIVIDE"))
-            return a/b;
 
-        return -1;
+    }
+    private static int calculate(double a, double b){
+        return 0;
     }
 }
 
 @FunctionalInterface
-interface Claculate {
+interface Calculate {
     Calculation calc();
 }
