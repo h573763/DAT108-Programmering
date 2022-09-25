@@ -10,6 +10,14 @@ public class Employee {
     private Gender gender;
     private double salary;
 
+    public Employee() {
+        this.firstName = "Ola";
+        this.lastName = "Nordmann";
+        this.position = Posistion.DEFAULT;
+        this.gender = Gender.NONE;
+        this.salary = -1;
+    }
+
     public Employee(String firstName, String lastName, Posistion position, Gender gender, double salary) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -56,5 +64,10 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString(){
+        return this.firstName + " " + this.lastName + ": " + this.salary;
     }
 }
