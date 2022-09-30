@@ -5,13 +5,17 @@ import no.hvl.dat108.task2.EmployeeList;
 import no.hvl.dat108.task2.enums.Gender;
 import no.hvl.dat108.task2.enums.Posistion;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.OptionalDouble;
 import java.util.stream.IntStream;
 
 public class Main {
+    static EmployeeList employees = new EmployeeList();
 
     public static void main(String[] args) {
-        EmployeeList employees = new EmployeeList();
+
 
         /** a)
          * Lag en ny liste som kun inneholder etternavn til de ansatte
@@ -34,29 +38,12 @@ public class Main {
         /** c)
          * Regn ut gjennomsnittslønnen til kvinnene
          */
-
-        List<Double> salaries = employees.getEmployees().stream()
+        OptionalDouble average = employees.getEmployees().stream()
                 .filter(e -> e.getGender().equals(Gender.FEMALE))
-                .map(Employee::getSalary)
-                .toList();
+                .mapToDouble(Employee::getSalary)
+                .average();
 
-        Double avarageSalaries; //TODO
-
-        //Skal gjøre det samme men med streams
-        //-------------------------------->
-
-        double sum = 0;
-        int i = 0;
-
-        for(Double salary : salaries){
-            i++;
-            sum += salary;
-        }
-        double avarage = sum/i;
-
-        System.out.println(avarage);
-
-        //<-------------------------------------
+        System.out.println("Avarage salaries: " + average);
 
         /** d)
          * Gi alle sjefer (stilling inne holder noe med "sjef") en lønnsøkning på 7% ved å bruke
@@ -90,27 +77,21 @@ public class Main {
         /** g)
          * Finn den/de ansatte som har lavest lønn.
          */
+        Employee lowestSal = employees.getEmployees().stream()
+                .min(Comparator.comparing(Employee::getSalary))
+                .orElseThrow(NoSuchElementException::new);
 
-        //TODO
-        //Løses med streams
-        //--------------------------------------------------->
-        Employee employee = employees.getEmployees().get(0);
+        System.out.println("The employee with lowest salary: " + lowestSal.toString());
 
-        for(Employee employee1 : employees.getEmployees()){
-
-            if(employee1.getSalary() < employee.getSalary()){
-                employee = employee1;
-            }
-        }
-        System.out.println(employee);
-        //<------------------------------------------------
 
         /** h)
          * Finn ut summen av alle heltall i [1,1000> som er delelig med 3 eller 5
          */
 
-        IntStream.range(1, 1000)
-                .filter(j -> j % 3 == 0 || j % 5 == 0); //TODO
-                //Gjør bereging
+        Integer sum = IntStream.range(1, 1000)
+                .filter(j -> j % 3 == 0 || j % 5 == 0)
+                .reduce(0, Integer::sum);
+
+        System.out.println("The sum of the numbers from 1 - 1000 that is divadable with 3 or/and 5 = " + sum);
     }
 }
