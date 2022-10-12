@@ -6,6 +6,6 @@ class Dice {
     }
 
     rollDice() {
-        return Math.random(1, this.#eyes);
+        return Math.random() * (this.#eyes - 1) + 1;
     }
 }
