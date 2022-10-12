@@ -1,4 +1,4 @@
-package no.hvl.dat108.mylist;
+package no.hvl.dat108.mylist.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
