@@ -18,9 +18,9 @@ public class Login {
         session.setAttribute("password", password);
         session.setAttribute("list", new MyList());
     }
-    public static boolean isLogedIn(HttpSession session){
-        return session != null
-                && session.getAttribute("password") != null
-                && session.getAttribute("list") != null;
+    public static boolean isNotLogedIn(HttpSession session){
+        return session == null
+                || session.getAttribute("password") == null
+                || session.getAttribute("list") == null;
     }
 }

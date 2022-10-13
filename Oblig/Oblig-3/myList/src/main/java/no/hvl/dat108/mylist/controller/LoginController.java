@@ -4,34 +4,32 @@ import no.hvl.dat108.mylist.util.Login;
 import no.hvl.dat108.mylist.util.PasswordValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-//@RequestMapping("/${app.url.login}")
 public class LoginController {
-    @Value("${app.url.invalidpublicpassword}") String INVALID_PUBLICPASSWORD_MESSAGE;
-    private PasswordValidator pv = new PasswordValidator();
+    @Value("${app.url.invalidpublicpassword}") String INVALID_PUBLIC_PASSWORD_MESSAGE;
+    private final PasswordValidator pv = new PasswordValidator();
 
-    @GetMapping(value = "/WEB-INF/jsp/loginview")
-    public String getLoginVeiw(){
-        return "loginview.jsp";
+    @GetMapping("/index")
+    public String getLoginVeiw(Model model){
+        model.addAttribute("welcome", "Welcome to the login page");
+        return "login";
     }
 
-    @PostMapping
-    public String tryLogIn(@RequestParam String password, HttpServletRequest request, RedirectAttributes ra){
+    @PostMapping(value = "/requestlogin")
+    public String requestLogIn(@RequestParam(name = "password") String password, HttpServletRequest request, RedirectAttributes ra){
 
         if(!pv.isValid(password)){
-            ra.addFlashAttribute("redirectMessage", INVALID_PUBLICPASSWORD_MESSAGE);
-                return "redirect:" + "loginview.jsp";
+            ra.addFlashAttribute("redirectMessage", INVALID_PUBLIC_PASSWORD_MESSAGE);
+                return "login";
             }
         Login.userLogIn(request, password);
 
-        return "redirect" + "listView.jsp";
+        return "list";
     }
 }

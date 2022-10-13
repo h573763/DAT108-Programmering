@@ -10,25 +10,25 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/${app.url.list}")
+@RequestMapping("list")
 public class ListController {
     @Value
    ("${app.url.loginmessage}") private String LOGIN_MESSAGE;
 
-    @GetMapping
+    @GetMapping(value = "/mylist")
     public String veiwList(HttpSession session, RedirectAttributes ra){
-        if(!Login.isLogedIn(session)){
+        if(Login.isNotLogedIn(session)){
             ra.addFlashAttribute("redirectMessage", LOGIN_MESSAGE);
-            return "redirect:" + "loginView";
+            return "redirect:" + "login.jsp";
         }
-        return "listView.jsp";
+        return "list.jsp";
     }
     @PostMapping
     public String addItemToList(@ModelAttribute("item") String item,
                                 HttpSession session, RedirectAttributes ra){
-        if(!Login.isLogedIn(session)){
+        if(Login.isNotLogedIn(session)){
             ra.addFlashAttribute("redirectMessage", LOGIN_MESSAGE);
-            return "loginview";
+            return "login.jsp";
         }
 
         MyList list = (MyList) session.getAttribute("list");
@@ -36,15 +36,15 @@ public class ListController {
         if(!list.findItem(item))
             list.addItem(item);
 
-        return "redirect:" + "listView.jsp";
+        return "redirect:" + "list.jsp";
     }
     @PostMapping
     public String removeItemFromList(@RequestParam(name="item") String item,
                                      HttpSession session, RedirectAttributes ra){
 
-        if(!Login.isLogedIn(session)){
+        if(Login.isNotLogedIn(session)){
             ra.addFlashAttribute("redirectMessage", LOGIN_MESSAGE);
-            return "redirect:" + "loginView";
+            return "redirect:" + "login.jsp";
         }
 
         MyList list = (MyList) session.getAttribute("list");
@@ -52,6 +52,6 @@ public class ListController {
         if(list.findItem(item))
             list.removeItem(item);
 
-        return "redirect:" + "listView";
+        return "redirect:" + "list";
     }
 }
