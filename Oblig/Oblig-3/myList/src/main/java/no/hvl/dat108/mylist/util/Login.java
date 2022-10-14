@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class Login {
-    @Value("${app.url.logouttimer}") private static int MAX_INTERVAL;
+    private static final int MAX_INTERVAL = 5;
     public static void userLogOut(HttpSession session){
         session.invalidate();
     }

@@ -7,8 +7,8 @@
 <body>
     <p>${login}</p>
 
-    <form action="requestlogin" method="post" style="padding: 10px">
-            User : <input type="text" name="user" style="margin: 20px">
+    <form action="/login" method="post" style="padding: 10px">
+            User : <input type="text" id="user" name="user" style="margin: 20px">
             <br />
             Passord : <input type="password" name="password"/>
             <br />

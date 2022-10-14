@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class PasswordValidator {
 
-    @Value("${app.url.password}") private String PUBLIC_PASSWORD;
+    private final String PUBLIC_PASSWORD = "vv08x";
 
     public boolean isValid(String password){
         return password.equals(PUBLIC_PASSWORD);

@@ -16,6 +16,7 @@ public class LoginController{
     @Value("${app.url.invalidpublicpassword}") String INVALID_PUBLIC_PASSWORD_MESSAGE;
     @Value("${app.url.login}") String LOGIN;
     @Value("${app.url.list}") String LIST;
+
     private final PasswordValidator pv = new PasswordValidator();
 
     @GetMapping
@@ -25,11 +26,12 @@ public class LoginController{
     }
 
     @PostMapping
-    public String getRequestLogin(@RequestParam String password, HttpServletRequest request, RedirectAttributes ra, Model model){
+    public String getRequestLogin(@RequestParam String password, HttpServletRequest request, RedirectAttributes ra){
+        password = request.getParameter("password");
 
         if(!pv.isValid(password)){
-            model.addAttribute("invalid", INVALID_PUBLIC_PASSWORD_MESSAGE);
-            return "redirect: " + LOGIN;
+            ra.addFlashAttribute("invalid", INVALID_PUBLIC_PASSWORD_MESSAGE);
+            return LOGIN;
         }
         Login.userLogIn(request, password);
 
