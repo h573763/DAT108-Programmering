@@ -11,25 +11,29 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class LoginController {
+@RequestMapping("${app.url.login}")
+public class LoginController{
     @Value("${app.url.invalidpublicpassword}") String INVALID_PUBLIC_PASSWORD_MESSAGE;
+    @Value("${app.url.login}") String LOGIN;
+    @Value("${app.url.list}") String LIST;
     private final PasswordValidator pv = new PasswordValidator();
 
-    @GetMapping("/index")
+    @GetMapping
     public String getLoginVeiw(Model model){
-        model.addAttribute("welcome", "Welcome to the login page");
-        return "login";
+        model.addAttribute("login", "Please enter password");
+        return LOGIN;
     }
 
-    @PostMapping(value = "/requestlogin")
-    public String requestLogIn(@RequestParam(name = "password") String password, HttpServletRequest request, RedirectAttributes ra){
+    @PostMapping
+    public String getRequestLogin(@RequestParam String password, HttpServletRequest request, RedirectAttributes ra, Model model){
 
         if(!pv.isValid(password)){
-            ra.addFlashAttribute("redirectMessage", INVALID_PUBLIC_PASSWORD_MESSAGE);
-                return "login";
-            }
+            model.addAttribute("invalid", INVALID_PUBLIC_PASSWORD_MESSAGE);
+            return "redirect: " + LOGIN;
+        }
         Login.userLogIn(request, password);
 
-        return "list";
+        return LIST;
+
     }
 }

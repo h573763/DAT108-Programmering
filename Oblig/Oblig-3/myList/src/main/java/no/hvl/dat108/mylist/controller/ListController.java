@@ -10,48 +10,53 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("list")
 public class ListController {
-    @Value
-   ("${app.url.loginmessage}") private String LOGIN_MESSAGE;
+    @Value("${app.url.loginmessage}") private String LOGIN_MESSAGE;
+    @Value("${app.url.list}") String LIST;
+    @Value("${app.url.login}") String LOGIN;
 
-    @GetMapping(value = "/mylist")
+    @GetMapping("/list") //Just temp
+    public String getList(){
+        return "list";
+    }
+
+    @GetMapping("/loginlist")
     public String veiwList(HttpSession session, RedirectAttributes ra){
         if(Login.isNotLogedIn(session)){
-            ra.addFlashAttribute("redirectMessage", LOGIN_MESSAGE);
-            return "redirect:" + "login.jsp";
+            ra.addAttribute("redirectMessage", LOGIN_MESSAGE);
+            return "redirect:" + LOGIN;
         }
-        return "list.jsp";
+        return LIST;
     }
-    @PostMapping
-    public String addItemToList(@ModelAttribute("item") String item,
-                                HttpSession session, RedirectAttributes ra){
-        if(Login.isNotLogedIn(session)){
-            ra.addFlashAttribute("redirectMessage", LOGIN_MESSAGE);
-            return "login.jsp";
-        }
-
-        MyList list = (MyList) session.getAttribute("list");
-
-        if(!list.findItem(item))
-            list.addItem(item);
-
-        return "redirect:" + "list.jsp";
-    }
-    @PostMapping
-    public String removeItemFromList(@RequestParam(name="item") String item,
-                                     HttpSession session, RedirectAttributes ra){
-
-        if(Login.isNotLogedIn(session)){
-            ra.addFlashAttribute("redirectMessage", LOGIN_MESSAGE);
-            return "redirect:" + "login.jsp";
-        }
-
-        MyList list = (MyList) session.getAttribute("list");
-
-        if(list.findItem(item))
-            list.removeItem(item);
-
-        return "redirect:" + "list";
-    }
+//    @PostMapping
+//    public String addItemToList(@ModelAttribute("item") String item,
+//                                HttpSession session, RedirectAttributes ra){
+//        if(Login.isNotLogedIn(session)){
+//            ra.addFlashAttribute("redirectMessage", LOGIN_MESSAGE);
+//            return "login.jsp";
+//        }
+//
+//        MyList list = (MyList) session.getAttribute("list");
+//
+//        if(!list.findItem(item))
+//            list.addItem(item);
+//
+//        return "redirect:" + "list.jsp";
+//    }
+//    @PostMapping
+//    public String removeItemFromList(@RequestParam(name="item") String item,
+//                                     HttpSession session, RedirectAttributes ra){
+//
+//        if(Login.isNotLogedIn(session)){
+//            ra.addFlashAttribute("redirectMessage", LOGIN_MESSAGE);
+//            return "redirect:" + "login.jsp";
+//        }
+//
+//        MyList list = (MyList) session.getAttribute("list");
+//
+//        if(list.findItem(item))
+//            list.removeItem(item);
+//
+//        return "redirect:" + "list";
+//    }
 }
