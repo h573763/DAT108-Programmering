@@ -6,16 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class Login {
-    private static final int MAX_INTERVAL = 5;
+    private static final int MAX_INTERVAL = 90;
     public static void userLogOut(HttpSession session){
         session.invalidate();
     }
-    public static void userLogIn(HttpServletRequest request, String password){
+    public static void userLogIn(HttpServletRequest request, String password, String username){
         userLogOut(request.getSession());
 
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(MAX_INTERVAL);
         session.setAttribute("password", password);
+        session.setAttribute("user", username);
         session.setAttribute("list", new MyList());
     }
     public static boolean isNotLogedIn(HttpSession session){

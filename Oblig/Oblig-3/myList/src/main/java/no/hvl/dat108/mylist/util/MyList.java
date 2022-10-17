@@ -5,7 +5,11 @@ import java.util.List;
 
 public class MyList {
 
-    private List<String> list = new ArrayList<>();
+    private List<String> list;
+
+    public MyList() {
+        this.list = new ArrayList<>();
+    }
 
     public void addItem(String item){
         list.add(item);
@@ -16,7 +20,7 @@ public class MyList {
     public void removeItem(String item){
         list.remove(item);
     }
-    public List<String> getList(){
+    public List<String> getItems(){
         return this.list;
     }
 }

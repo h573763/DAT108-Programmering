@@ -26,16 +26,16 @@ public class LoginController{
     }
 
     @PostMapping
-    public String getRequestLogin(@RequestParam String password, HttpServletRequest request, RedirectAttributes ra){
+    public String getRequestLogin(@RequestParam String password, @RequestParam String user, HttpServletRequest request, RedirectAttributes ra){
         password = request.getParameter("password");
 
         if(!pv.isValid(password)){
             ra.addFlashAttribute("invalid", INVALID_PUBLIC_PASSWORD_MESSAGE);
-            return LOGIN;
+            return "redirect:" + LOGIN;
         }
-        Login.userLogIn(request, password);
+        Login.userLogIn(request, password, user);
 
-        return LIST;
+        return "redirect:" + LIST;
 
     }
 }

@@ -5,7 +5,8 @@
     <title>Login</title>
 </head>
 <body>
-    <p>${login}</p>
+    <p>${invalid}</p>
+    <p>${redirectmessage}</p>
 
     <form action="/login" method="post" style="padding: 10px">
             User : <input type="text" id="user" name="user" style="margin: 20px">
