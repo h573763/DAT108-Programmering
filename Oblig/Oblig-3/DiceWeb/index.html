@@ -1,51 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="./JS/DiceController.js"></script>
-        <script src="./JS/Dice.js"></script>
-        <link rel="styles" href="./styles.css">
-    </head>
-
-    <body>
+        <!-- <link rel="styles" href="./styles.css"> -->
         <script>
-            // class Dice {
-            //     #eyes;
-            //
-            //     constructor(eyes = 6){
-            //     this.#eyes = eyes;
-            //      }
-            //
-            //     rollDice() {
-            //         return Math.round(Math.random() * (this.#eyes - 1) + 1);
-            //     }
-                // getValue(){
-                //     return this.rollDice()
-                // }
-            // }
-            // class DiceController{
-            //     dice
-            //
-            //     constructor(dice) {
-            //         this.dice = dice;
-            //     }
-            // }
-            // const dice = new Dice();
-            // const controller = new DiceController(dice);
-            // new DiceController(rootElement);
-            // document.getElementById("result").innerHTML = controller.dice.rollDice();
-
-            function rollDice(eyes){
-                var result = Math.random() * (eyes - 1) + 1;
-
-                document.getElementById("result").innerHTML = Math.round(result);
+            class Dice {
+                #eyes;
+            
+                constructor(eyes){
+                this.#eyes = eyes;
+                }
+                roll() {
+                    var result = Math.round(Math.random() * (this.#eyes - 1) + 1);
+                    
+                    document.getElementById("result").innerHTML = result;
+                }
+            }
+            class DiceController{
+                #dice
+            
+                constructor(dice) {
+                    this.#dice = dice;
+                }
+                getDice(){
+                    return this.#dice;
+                }
             }
 
+             const dice = new Dice(6);
+             const controller = new DiceController(dice);
         </script>
-
-        <div class="./styles/roller">
-            <label>Select dice eyes</label>
-            <input id='amount' type="text"><br />
-            <button style="text-align: left;" onclick="rollDice(parseInt(document.getElementById('amount').value))">Roll</button>
+    </head>
+    <body>
+        <div style="text-align: center; padding: 10px; font-size: large;">
+            <label style="margin: 25px;">
+                Ready, set, roll!!
+            </label>
+            <br />
+            <button onclick="(controller.getDice().roll())">
+                Roll
+            </button>
             <span id="result"></span>
         </div>
     </body>
