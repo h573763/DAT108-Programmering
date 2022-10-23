@@ -21,7 +21,7 @@ public class ListController {
     @GetMapping
     public String veiwList(HttpSession session, RedirectAttributes ra){
         if(Login.isNotLogedIn(session)){
-            ra.addAttribute("redirectmessage", LOGIN_MESSAGE);
+            ra.addFlashAttribute("loginmessage", LOGIN_MESSAGE);
             return "redirect:" + LOGIN;
         }
         return LIST;
