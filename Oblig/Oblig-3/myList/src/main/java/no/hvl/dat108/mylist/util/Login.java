@@ -1,9 +1,12 @@
 package no.hvl.dat108.mylist.util;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 
 public class Login {
     private static final int MAX_INTERVAL = 90;
