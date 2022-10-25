@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Classes ###
+/src/main/java/no/hvl/dat108/mylist/util/PasswordValidator.java
