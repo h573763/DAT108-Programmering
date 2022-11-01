@@ -2,11 +2,7 @@ package no.hvl.dat108.oblig4.dataobjects;
 
 import javax.persistence.*;
 
-@Entity
 public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     private String firstName, Lastname;
