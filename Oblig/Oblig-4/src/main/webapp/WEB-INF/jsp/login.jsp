@@ -8,9 +8,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <title>Login</title>
 </head>
 <body>
-
+    <div id="root">
+        <p>${message}</p>
+        <form action="login" method="post">
+            <fieldset>
+                <legend>
+                   Login
+                </legend>
+                <input type="text" name="phonenumber" placeholder="Phonenumber">
+                <input type="password" name="password" placeholder="Password">
+                <br>
+                <input type="submit" value="Login" name = "button">
+            </fieldset>
+        </form>
+        <a href="signup">
+            Click here to sign up
+        </a>
+    </div>
 </body>
 </html>
