@@ -2,22 +2,42 @@ package no.hvl.dat108.oblig4.dataobjects;
 
 import javax.persistence.*;
 
+@Entity
+@Table(schema = "dat108")
 public class Person {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(nullable = false)
+    private String firstName, lastname;
 
-    private String firstName, Lastname;
+    @Column(unique = true)
     private int phonenumber;
+
+    @Column(nullable = false)
     private Gender gender;
+
+    @Column(nullable = false)
+    private String password;
 
     public Person() { //Default
     }
 
-    public Person(Long id, String firstName, String lastname, int phonenumber, Gender gender) {
+    public Person(int id, String firstName, String lastname, int phonenumber, Gender gender, String password) {
         this.id = id;
         this.firstName = firstName;
-        Lastname = lastname;
+        this.lastname = lastname;
         this.phonenumber = phonenumber;
         this.gender = gender;
+        this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -25,7 +45,7 @@ public class Person {
     }
 
     public String getLastname() {
-        return Lastname;
+        return lastname;
     }
 
     public int getPhonenumber() {
@@ -36,20 +56,12 @@ public class Person {
         return gender;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     public void setLastname(String lastname) {
-        Lastname = lastname;
+        this.lastname = lastname;
     }
 
     public void setPhonenumber(int phonenumber) {
@@ -58,5 +70,18 @@ public class Person {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("firstname= %s, lastname= %s, phonenumber= %d, gender= %s", firstName, lastname, phonenumber, gender);
     }
 }
