@@ -35,3 +35,4 @@ build/
 ### Sensitive ###
 src/main/resources/application.properties
 /html-exp/
+/sql/
