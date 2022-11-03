@@ -13,7 +13,9 @@ public interface PersonRepo extends JpaRepository<Person, Integer> {
      * To use for the list.jsp
      * @return A list of participants
      */
-    List<Person> findAllByPhonenumber(int phonenumber);
+    List<Person> findAll();
+
+    Person findByPhonenumber(int phonenumber);
 
     /**
      * To use in the validator class if the phonenumber and password is connected to the same entity
@@ -23,4 +25,5 @@ public interface PersonRepo extends JpaRepository<Person, Integer> {
      */
 
     Person findByPhonenumberAndPassword(int phonenumber, String password);
+
 }
