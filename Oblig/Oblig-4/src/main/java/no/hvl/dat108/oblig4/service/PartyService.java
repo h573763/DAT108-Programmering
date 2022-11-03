@@ -14,7 +14,13 @@ public class PartyService {
     @Autowired
     private PersonRepo personRepo;
 
-    public List<Person> findAllParticipants(int phonenumber){
-        return personRepo.findAllByPhonenumber(phonenumber);
+    public List<Person> findAllParticipants(){
+        return personRepo.findAll();
+    }
+
+    public void storeParticipant(Person person){
+        if(person != null) {
+            personRepo.save(person);
+        }
     }
 }
