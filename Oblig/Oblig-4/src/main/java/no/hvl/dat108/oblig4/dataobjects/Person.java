@@ -3,10 +3,10 @@ package no.hvl.dat108.oblig4.dataobjects;
 import javax.persistence.*;
 
 @Entity
-@Table(schema = "dat108")
+@Table(name="Persons", schema = "dat108")
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(nullable = false)
     private String firstName, lastname;
@@ -23,12 +23,10 @@ public class Person {
     public Person() { //Default
     }
 
-    public Person(int id, String firstName, String lastname, int phonenumber, Gender gender, String password) {
-        this.id = id;
+    public Person(String firstName, String lastname, int phonenumber, String password) {
         this.firstName = firstName;
         this.lastname = lastname;
         this.phonenumber = phonenumber;
-        this.gender = gender;
         this.password = password;
     }
 
