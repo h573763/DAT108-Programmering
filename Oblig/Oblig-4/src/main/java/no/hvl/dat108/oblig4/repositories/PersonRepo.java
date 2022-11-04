@@ -23,7 +23,4 @@ public interface PersonRepo extends JpaRepository<Person, Integer> {
      * @param password
      * @return The person the phonenumber and password belongs to
      */
-
-    Person findByPhonenumberAndPassword(int phonenumber, String password);
-
 }

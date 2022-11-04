@@ -3,30 +3,36 @@ package no.hvl.dat108.oblig4.dataobjects;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Persons", schema = "dat108")
+@Table(name= "persons", schema = "dat108")
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false)
-    private String firstName, lastname;
+    @Column(name = "firstname", nullable = false)
+    private String firstName;
 
-    @Column(unique = true)
+    @Column(name = "lastname", nullable = false)
+
+    private String lastname;
+
+    @Column(name="phonenumber", unique = true)
     private int phonenumber;
 
-    @Column(nullable = false)
-    private Gender gender;
 
-    @Column(nullable = false)
+    @Column(name="gender", nullable = false)
+    private String gender;
+
+    @Column(name="password", nullable = false)
     private String password;
 
     public Person() { //Default
     }
 
-    public Person(String firstName, String lastname, int phonenumber, String password) {
+    public Person(String firstName, String lastname, int phonenumber, String gender, String password) {
         this.firstName = firstName;
         this.lastname = lastname;
         this.phonenumber = phonenumber;
+        this.gender = gender;
         this.password = password;
     }
 
@@ -50,7 +56,7 @@ public class Person {
         return phonenumber;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -66,7 +72,7 @@ public class Person {
         this.phonenumber = phonenumber;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
