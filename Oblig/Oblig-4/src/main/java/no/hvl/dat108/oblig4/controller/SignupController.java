@@ -1,6 +1,5 @@
 package no.hvl.dat108.oblig4.controller;
 
-import no.hvl.dat108.oblig4.dataobjects.Gender;
 import no.hvl.dat108.oblig4.dataobjects.Person;
 import no.hvl.dat108.oblig4.service.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class SignupController {
 
         int lenght = String.valueOf(phone).length();
 
-        for(Person person : ps.findAllParticipants()){
+        for(Person person : ps.findAllParticipants()){ //Noter at dette ikke er effektivt
             if(person.getPhonenumber() == phone){
                 ra.addFlashAttribute("existing", "There is already a regisered guest with that number");
                 return "redirect:" + "signup";
@@ -47,19 +46,11 @@ public class SignupController {
             return "redirect:" + "signup";
         }
 
-
         String fistName = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
-
-        Person person = new Person(fistName, lastName, phone, password);
-
-
         String gender = request.getParameter("gender");
 
-        if(gender.equals("Male"))
-            person.setGender(Gender.MALE);
-        else
-            person.setGender(Gender.FEMALE);
+        Person person = new Person(fistName, lastName, phone, gender, password);
 
         ps.storeParticipant(person);
 

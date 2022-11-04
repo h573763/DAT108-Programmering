@@ -1,5 +1,9 @@
 package no.hvl.dat108.oblig4.controller;
 
+import no.hvl.dat108.oblig4.service.PartyService;
+import no.hvl.dat108.oblig4.utilites.Login;
+import no.hvl.dat108.oblig4.utilites.Validator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,19 +17,28 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/login")
 public class LoginController {
 
+    @Autowired
+    public Validator validator;
+
+    @Autowired
+    PartyService ps;
+
     @GetMapping
     public String viewPage(){
         return "login";
     }
 
-    public String login(@RequestParam(name = "phonenumber") String phone, @RequestParam(name = "password") String password, RedirectAttributes ra){
+    public String login(@RequestParam(name = "phonenumber") String phone, @RequestParam(name = "password") String password, RedirectAttributes ra,
+                        HttpServletRequest request){
 
-        if(true){ //TODO: Check if phonenumber and password is correct
-            ra.addFlashAttribute("message", "Phonenumber or password is not correct");
-            return "redirect:" + "login";
+        if(validator.isValid(password, phone)){ //Check if phonenumber and password is correct
+            Login.userLogIn(request, password, phone);
+            ra.addAttribute("user=" + ps.findByPhonenumber(Integer.parseInt(phone)).getFirstName());
+            return "redirect:" + "participants";
         }
-
-        return "redirect:" + "participants";
+        ra.addFlashAttribute("message", "Phonenumber or password is not correct");
+        ra.addAttribute("failed+login");
+        return "redirect:" + "login";
     }
 
     public String signUp(){
@@ -38,7 +51,7 @@ public class LoginController {
 
         String button = request.getParameter("button");
         if(button.equals("Login")){
-            return login(phone, password, ra);
+            return login(phone, password, ra, request);
         }
 
         return signUp();
