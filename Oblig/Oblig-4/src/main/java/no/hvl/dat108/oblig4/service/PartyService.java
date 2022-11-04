@@ -18,6 +18,10 @@ public class PartyService {
         return personRepo.findAll();
     }
 
+    public Person findByPhonenumber(int phonenumber){
+        return personRepo.findByPhonenumber(phonenumber);
+    }
+
     public void storeParticipant(Person person){
         if(person != null) {
             personRepo.save(person);
