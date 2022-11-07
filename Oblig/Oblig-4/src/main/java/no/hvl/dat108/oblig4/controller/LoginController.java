@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 @Controller
 @RequestMapping("/login")
@@ -29,7 +31,7 @@ public class LoginController {
     }
 
     public String login(@RequestParam(name = "phonenumber") String phone, @RequestParam(name = "password") String password, RedirectAttributes ra,
-                        HttpServletRequest request){
+                        HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
         if(validator.isValid(password, phone)){ //Check if phonenumber and password is correct
             Login.userLogIn(request, password, phone);
@@ -47,7 +49,7 @@ public class LoginController {
 
     @PostMapping
     public String doPost(@RequestParam(name = "phonenumber") String phone, @RequestParam(name = "password") String password,
-                         RedirectAttributes ra, HttpServletRequest request){
+                         RedirectAttributes ra, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
         String button = request.getParameter("button");
         if(button.equals("Login")){
