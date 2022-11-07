@@ -22,18 +22,22 @@ public class Person {
     @Column(name="gender", nullable = false)
     private String gender;
 
-    @Column(name="password", nullable = false)
-    private String password;
+    @Column(name="passhash", nullable = false)
+    private String hash;
+
+    @Column(name = "salt", nullable = false)
+    private String salt;
 
     public Person() { //Default
     }
 
-    public Person(String firstName, String lastname, int phonenumber, String gender, String password) {
+    public Person(String firstName, String lastname, int phonenumber, String gender, String hash, String salt) {
         this.firstName = firstName;
         this.lastname = lastname;
         this.phonenumber = phonenumber;
         this.gender = gender;
-        this.password = password;
+        this.hash = hash;
+        this.salt = salt;
     }
 
     public int getId() {
@@ -76,16 +80,22 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getPassword() {
-        return password;
+    public String getHash() {
+        return hash;
+    }
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+    public String getSalt() {
+        return salt;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
-    @Override
-    public String toString(){
-        return String.format("firstname= %s, lastname= %s, phonenumber= %d, gender= %s", firstName, lastname, phonenumber, gender);
-    }
+//    @Override
+//    public String toString(){
+//        return String.format("firstname= %s, lastname= %s, phonenumber= %d, gender= %s", firstName, lastname, phonenumber, gender);
+//    }
 }
