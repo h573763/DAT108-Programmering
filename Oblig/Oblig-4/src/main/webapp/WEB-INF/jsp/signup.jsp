@@ -17,17 +17,17 @@
         <fieldset>
             <section>
                 <label>Firstname: </label>
-                <input type="text" name="firstname" id="firstname" placeholder="Fill in firstname" class="signup-input">
+                <input type="text" name="firstname" id="fname" placeholder="Fill in firstname" class="signup-input">
             </section>
                 <br>
             <section>
                 <label>Lastname: </label>
-                <input type="text" name="lastname" id="lastname" placeholder="Fill in lastname" class="signup-input">
+                <input type="text" name="lastname" id="lname" placeholder="Fill in lastname" class="signup-input">
             </section>
                 <br>
             <section>
                 <label>Phone (8 digits): </label>
-                <input type="text" name="phonenumber" id="phonenumber" placeholder="Fill in phonenumber" class="signup-input">
+                <input type="text" name="phonenumber" id="number" placeholder="Fill in phonenumber" class="signup-input">
             </section>
                 <br>
             <section>
