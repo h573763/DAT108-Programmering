@@ -1,16 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Torva
-  Date: 31.10.2022
-  Time: 13:47
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>MyList</title>
 </head>
 <body>
+<h1>Welcome <c:out value="${user}"/>, to MyList!</h1>
+<form action="/list" method="post">
+    <input type="submit" value="Add" name="button"><br />
+    <input type="text" name="item">
+</form>
+<table>
+    <jsp:useBean id="participants" scope="request" type="java.util.List"/>
+    <c:forEach items="${participants}" var="item">
+        ${item.firstName}<br>
+    </c:forEach>
+
+</table>
 
 </body>
+
 </html>
