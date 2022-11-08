@@ -3,19 +3,25 @@
 /* signup.jsp */
 
 .signup-fieldset{
-    max-width: 350px;
+    max-width: 300px;
 }
 
 .signup-input {
-    text-align: left;
-    margin-left: 15%;
+
+    /*margin-left: 15%;*/
     width: 150px;
 }
 .radio{
+    text-align: center;
     margin-bottom: 5px;
 }
 
 section{
+    text-align: right;
+
+    position: relative;
+    left: auto;
+
     margin-bottom: 5px;
     margin-top: 5px;
 }
