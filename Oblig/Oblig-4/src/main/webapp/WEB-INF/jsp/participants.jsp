@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
     <title>Participants</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
     <jsp:useBean id="participants" scope="request" type="java.util.List"/>
     <c:forEach items="${participants}" var="person">
         <tr>
-        ${person.firstName} ${person.lastname} ${person.phonenumber} ${person.gender}
+        ${person.firstName} ${person.lastname} ${person.phonenumber} ${person.gender} <br />
         </tr>
     </c:forEach>
 

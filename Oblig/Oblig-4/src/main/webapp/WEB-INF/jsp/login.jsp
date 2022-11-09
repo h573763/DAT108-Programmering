@@ -19,7 +19,7 @@
                 <legend>
                    Login
                 </legend>
-                <input type="text" name="phonenumber" placeholder="Phonenumber">
+                <input type="text" name="number" placeholder="Phonenumber">
                 <input type="password" name="password" placeholder="Password">
                 <br>
                 <input type="submit" value="Login" name = "button">
