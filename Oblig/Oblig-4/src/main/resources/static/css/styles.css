@@ -8,8 +8,8 @@
 
 .signup-input {
 
-    /*margin-left: 15%;*/
     width: 150px;
+    outline: solid 1px;
 }
 .radio{
     text-align: center;
