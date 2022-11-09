@@ -1,5 +1,26 @@
 /* login.jsp */
 
+/* participatns.jsp */
+
+.list-body{
+    text-align: center;
+}
+
+.table{
+    background-color: red;
+    margin-top: 100px;
+}
+
+.table-row{
+    margin-top: auto;
+}
+
+.logout-button{
+    margin-top: 20px;
+    position: relative;
+    right: 20px;
+}
+
 /* signup.jsp */
 
 .signup-fieldset{
@@ -25,3 +46,5 @@ section{
     margin-bottom: 5px;
     margin-top: 5px;
 }
+
+/* confirmed.jsp */
