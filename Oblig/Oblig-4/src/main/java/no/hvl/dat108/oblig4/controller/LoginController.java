@@ -36,6 +36,11 @@ public class LoginController {
         if(validator.isValid(password, phone)){ //Check if phonenumber and password is correct
             Login.userLogIn(request, password, phone);
             ra.addAttribute("user=" + ps.findByPhonenumber(Integer.parseInt(phone)).getFirstName());
+
+            int phonenumber = Integer.parseInt(request.getParameter("number"));
+
+            ra.addFlashAttribute("currentUser", ps.findByPhonenumber(phonenumber));
+
             return "redirect:" + "participants";
         }
         ra.addFlashAttribute("message", "Phonenumber or password is not correct");

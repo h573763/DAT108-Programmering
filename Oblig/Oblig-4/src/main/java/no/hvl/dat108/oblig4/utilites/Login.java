@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 
 public class Login {
 
-        private static final int MAX_INTERVAL = 90;
+        private static final int MAX_INTERVAL = 300;
         public static void userLogOut(HttpSession session){
             session.invalidate();
         }
@@ -23,6 +23,6 @@ public class Login {
         public static boolean isNotLogedIn(HttpSession session){
             return session == null
                     || session.getAttribute("password") == null
-                    || session.getAttribute("list") == null;
+                    || session.getAttribute("person") == null;
         }
     }
