@@ -30,7 +30,7 @@ public class LoginController {
         return "login";
     }
 
-    public String login(@RequestParam(name = "phonenumber") String phone, @RequestParam(name = "password") String password, RedirectAttributes ra,
+    public String login(@RequestParam(name = "number") String phone, @RequestParam(name = "password") String password, RedirectAttributes ra,
                         HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
         if(validator.isValid(password, phone)){ //Check if phonenumber and password is correct
@@ -48,7 +48,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public String doPost(@RequestParam(name = "phonenumber") String phone, @RequestParam(name = "password") String password,
+    public String doPost(@RequestParam(name = "number") String phone, @RequestParam(name = "password") String password,
                          RedirectAttributes ra, HttpServletRequest request) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
         String button = request.getParameter("button");
