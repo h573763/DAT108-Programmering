@@ -31,6 +31,13 @@ public class Person {
     public Person() { //Default
     }
 
+    public Person(String firstName, String lastname, int phonenumber, String gender){
+        this.firstName = firstName;
+        this.lastname = lastname;
+        this.phonenumber = phonenumber;
+        this.gender = gender;
+    }
+
     public Person(String firstName, String lastname, int phonenumber, String gender, String hash, String salt) {
         this.firstName = firstName;
         this.lastname = lastname;
