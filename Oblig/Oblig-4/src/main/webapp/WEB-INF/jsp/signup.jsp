@@ -9,6 +9,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <script src="js/script.js"></script>
     <title>Signup</title>
 </head>
 <body>
@@ -17,32 +18,36 @@
         <fieldset>
             <section>
                 <label>Firstname: </label>
-                <input type="text" name="firstname" id="fname" placeholder="Fill in firstname" class="signup-input">
+                <input type="text" name="firstname" id="firstname" onkeyup="nameValidator('firstname', 'fnameerror')" placeholder="Fill in firstname" class="signup-input" required="required">
+                <p id="fnameerror"></p>
             </section>
                 <br>
             <section>
                 <label>Lastname: </label>
-                <input type="text" name="lastname" id="lname" placeholder="Fill in lastname" class="signup-input">
+                <input type="text" name="lastname" id="lastname" onkeyup="nameValidator('lastname', 'lnameerror')" placeholder="Fill in lastname" class="signup-input" required="required">
+                <p id="lnameerror"></p>
             </section>
                 <br>
             <section>
                 <label>Phone (8 digits): </label>
-                <input type="text" name="phonenumber" id="number" placeholder="Fill in phonenumber" class="signup-input">
+                <input type="text" name="phonenumber" id="phonenumber" onkeyup="phoneValidator()" placeholder="Fill in phonenumber" class="signup-input" required="required">
+                <p id="numbererror"></p>
             </section>
                 <br>
             <section>
                 <label>Password: </label>
-                <input type="password" name="password" placeholder="Fill in password" class="signup-input">
+                <input type="password" name="password" id="pw" onkeyup="passwordValidator()" placeholder="Fill in password" class="signup-input" required="required">
+                <p id="passwordError"></p>
             </section>
                 <br>
             <section>
                 <label>Repeat password: </label>
-                <input type="password" name="repeted" placeholder="Repeat password" class="signup-input">
+                <input type="password" name="repeted" id="repeted" onkeyup="equalPassword()" placeholder="Repeat password" class="signup-input" required="required">
             </section>
                 <br>
                 <form class="radio">
                     <label>Gender: </label>
-                    <input type="radio" id="male" name="gender" value="Male">
+                    <input type="radio" id="male" name="gender" value="Male" required="required">
                     <label for="male">Male</label>
                     <input type="radio" id="female" name="gender" value="Female">
                     <label for="female">Female</label>
