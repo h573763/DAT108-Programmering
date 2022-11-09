@@ -57,6 +57,8 @@ public class SignupController {
 
         Person person = new Person(fistName, lastName, phone, gender, hash, salt);
 
+        ra.addFlashAttribute("newguest", person);
+
         ps.storeParticipant(person);
 
         return "redirect:" + "confirmed";

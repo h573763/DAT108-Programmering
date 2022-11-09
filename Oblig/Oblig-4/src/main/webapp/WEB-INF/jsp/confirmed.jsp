@@ -14,9 +14,13 @@
 <body>
     <h1>Confirmation</h1>
     <p>Confirmation is registered for: </p>
-    <p>Firstname: <c:out value="${firstname}"/></p>
-    <p>Lastname: <c:out value="${lastname}"/> </p>
-    <p>Phonenumber: <c:out value="${phonenumber}"/> </p>
-    <p>Gender: <c:out value="${gender}"/> </p>
+    <p>Firstname: ${newguest.firstName}</p>
+    <p>Lastname: ${newguest.lastname} </p>
+    <p>Phonenumber: ${newguest.phonenumber}</p>
+    <p>Gender: ${newguest.gender}</p>
+
+    <form action="confirmed" method="post">
+        <button name = "viewList">Login</button>
+    </form>
 </body>
 </html>
