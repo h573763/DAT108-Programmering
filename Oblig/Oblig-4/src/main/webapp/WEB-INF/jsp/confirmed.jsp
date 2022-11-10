@@ -9,7 +9,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Title</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Confirmed</title>
 </head>
 <body>
     <h1>Confirmation</h1>
@@ -20,7 +21,7 @@
     <p>Gender: ${newguest.gender}</p>
 
     <form action="confirmed" method="post">
-        <button name = "viewList">Login</button>
+        <button name = "viewList" class="button">Login</button>
     </form>
 </body>
 </html>

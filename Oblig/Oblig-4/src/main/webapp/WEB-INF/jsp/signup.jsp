@@ -19,30 +19,32 @@
             <section>
                 <label>Firstname: </label>
                 <input type="text" name="firstname" id="firstname" onkeyup="nameValidator('firstname', 'fnameerror')" placeholder="Fill in firstname" class="signup-input" required="required">
-                <p id="fnameerror"></p>
+                <p id="fnameerror" style="color: red;"></p>
             </section>
                 <br>
             <section>
                 <label>Lastname: </label>
                 <input type="text" name="lastname" id="lastname" onkeyup="nameValidator('lastname', 'lnameerror')" placeholder="Fill in lastname" class="signup-input" required="required">
-                <p id="lnameerror"></p>
+                <p id="lnameerror" style="color: red;"></p>
             </section>
                 <br>
             <section>
                 <label>Phone (8 digits): </label>
                 <input type="text" name="phonenumber" id="phonenumber" onkeyup="phoneValidator()" placeholder="Fill in phonenumber" class="signup-input" required="required">
-                <p id="numbererror"></p>
+                <p id="numbererror" style="color: red;"></p>
+                <p style="color: red;">${existing}${invalidlength}${invalidnumber}</p>
             </section>
                 <br>
             <section>
                 <label>Password: </label>
                 <input type="password" name="password" id="pw" onkeyup="passwordValidator()" placeholder="Fill in password" class="signup-input" required="required">
-                <p id="passwordError"></p>
+                <p id="passwordError" style="color: red;"></p>
             </section>
                 <br>
             <section>
                 <label>Repeat password: </label>
                 <input type="password" name="repeted" id="repeted" onkeyup="equalPassword()" placeholder="Repeat password" class="signup-input" required="required">
+                <p style="color: red;">${mismatch}</p>
             </section>
                 <br>
                 <form class="radio">
@@ -53,8 +55,7 @@
                     <label for="female">Female</label>
                 </form>
             <br>
-            <p>${existing}${mismatch}</p>
-            <input type="submit" name="submit" value="Sign me up">
+            <input type="submit" class="button" value="Sign me up"/>
         </fieldset>
     </form>
 </body>

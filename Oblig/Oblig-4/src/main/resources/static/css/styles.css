@@ -1,24 +1,39 @@
 /* login.jsp */
 
+.login-fieldset{
+    width: 40%;
+}
+
 /* participatns.jsp */
 
-.list-body{
-    text-align: center;
+.list-body {
+    margin-left: 100px;
 }
 
 .table{
-    background-color: red;
-    margin-top: 100px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
 }
 
-.table-row{
-    margin-top: auto;
+td, th{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
 }
 
-.logout-button{
+tr:nth-child(even) {
+    background-color: #f3f5fd;
+}
+
+.button{
     margin-top: 20px;
-    position: relative;
-    right: 20px;
+    height: 30px;
+    color: whitesmoke;
+
+    background-color: #0d47a1;
+    border-radius: 4px;
+
 }
 
 /* signup.jsp */

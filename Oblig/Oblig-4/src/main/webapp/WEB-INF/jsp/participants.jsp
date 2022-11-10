@@ -9,22 +9,27 @@
 </head>
 <body class="list-body">
 
-<p>Logged in as: </p> <br/>
-<p>Firstname: ${currentUser.firstName}</p> <br />
-<p>Lastname: ${currentUser.lastname}</p> <br />
-<p>Phonenumber: ${currentUser.phonenumber}</p> <br />
+<p>Logged in as: ${currentUser.phonenumber} / ${currentUser.firstName} ${currentUser.lastname}</p> <br />
 
 <table class="table">
+    <h2>Participants</h2>
     <jsp:useBean id="participants" scope="request" type="java.util.List"/>
+    <tr>
+        <th>Gender</th>
+        <th>Name</th>
+        <th>Phonenumber</th>
+    </tr>
     <c:forEach items="${participants}" var="person">
-        <tr class="table-row">
-                ${person.firstName} ${person.lastname} ${person.phonenumber} ${person.gender} <br/>
+        <tr>
+            <th>${person.gender}</th>
+            <th>${person.firstName} ${person.lastname}</th>
+            <th>${person.phonenumber}</th>
         </tr>
     </c:forEach>
 
 </table>
 <form action="participants" method="post">
-    <button name = "logout" class="logout-button">Logg Out</button>
+    <button class="button">Logg Out</button>
 </form>
 </body>
 

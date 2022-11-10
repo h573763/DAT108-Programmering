@@ -15,14 +15,14 @@
     <div id="root">
         <p>${message}${loginmessage}</p>
         <form action="login" method="post">
-            <fieldset>
+            <fieldset class="login-fieldset">
                 <legend>
                    Login
                 </legend>
                 <input type="text" name="number" placeholder="Phonenumber">
                 <input type="password" name="password" placeholder="Password">
                 <br>
-                <input type="submit" value="Login" name = "button">
+                <input type="submit" name="button" class="button" value="Login"/>
             </fieldset>
         </form>
         <a href="signup">
