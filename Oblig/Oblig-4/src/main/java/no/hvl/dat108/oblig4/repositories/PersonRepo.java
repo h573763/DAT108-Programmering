@@ -15,12 +15,10 @@ public interface PersonRepo extends JpaRepository<Person, Integer> {
      */
     List<Person> findAll();
 
-    Person findByPhonenumber(int phonenumber);
-
     /**
-     * To use in the validator class if the phonenumber and password is connected to the same entity
-     * @param phonenumber
-     * @param password
-     * @return The person the phonenumber and password belongs to
+     *
+     * @param phonenumber the unique lookup we use to find persons in the database
+     * @return the person that where found, if none is found we return null
      */
+    Person findByPhonenumber(int phonenumber);
 }
