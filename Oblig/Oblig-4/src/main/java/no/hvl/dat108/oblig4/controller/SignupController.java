@@ -26,17 +26,27 @@ public class SignupController {
     public String viewPage(){
         return "signup";
     }
-
     @PostMapping
     public String requestSignUp(HttpServletRequest request, RedirectAttributes ra) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
-        int phone = Integer.parseInt(request.getParameter("phonenumber"));
+        int phone = 0;
+
+        try {
+            phone = Integer.parseInt(request.getParameter("phonenumber"));
+        }catch (NumberFormatException e){
+            ra.addFlashAttribute("invalidnumber", "The phonenumber has to consist of digits only");
+            return "redirect:" + "signup";
+        }
 
         int lenght = String.valueOf(phone).length();
 
-        for(Person person : ps.findAllParticipants()){ //Noter at dette ikke er effektivt
+        for(Person person : ps.findAllParticipants()){ //Noter at dette ikke er effektivt i en stor database
             if(person.getPhonenumber() == phone){
                 ra.addFlashAttribute("existing", "There is already a regisered guest with that number");
+                return "redirect:" + "signup";
+            }
+            if(lenght != 8){//Skjekker lengden på telefonnummeret
+                ra.addFlashAttribute("invalidlength", "The phonenumber has to be exaclty 8 digits");
                 return "redirect:" + "signup";
             }
         }
@@ -47,6 +57,10 @@ public class SignupController {
         if(!password.equals(repeatedPassword)){
             ra.addFlashAttribute("mismatch", "Passwords has to match");
             return "redirect:" + "signup";
+        }
+
+        if(password.length() < 8 || password.length() > 16 ){ //skjekker lenden på passordet
+            return  "signup";
         }
 
         String salt = HashPassword.salt();

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -22,13 +23,16 @@ public class ListController {
     @Autowired private PartyService ps;
 
     @GetMapping
-    public String list(Model model, HttpSession session, RedirectAttributes ra, HttpServletRequest request){
+    public String  list(Model model, HttpSession session, RedirectAttributes ra, HttpServletRequest request){
 
         if(Login.isNotLogedIn(session)){
             ra.addFlashAttribute("loginmessage", LOGINMESSAGE);
             return "redirect:" + "login";
         }
         List<Person> participants = ps.findAllParticipants();
+
+        Collections.sort(participants, (a,b) -> a.getFirstName().compareTo(b.getFirstName()));
+
         model.addAttribute("participants", participants);
         return "participants";
     }
