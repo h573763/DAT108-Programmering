@@ -16,6 +16,6 @@ public class ConfirmedController {
 
     @PostMapping
     public String returnLogin(){
-        return "login";
+        return "redirect:" + "participants";
     }
 }

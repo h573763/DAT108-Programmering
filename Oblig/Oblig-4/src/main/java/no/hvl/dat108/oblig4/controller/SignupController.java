@@ -3,8 +3,10 @@ package no.hvl.dat108.oblig4.controller;
 import no.hvl.dat108.oblig4.dataobjects.Person;
 import no.hvl.dat108.oblig4.service.PartyService;
 import no.hvl.dat108.oblig4.utilites.HashPassword;
+import no.hvl.dat108.oblig4.utilites.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,6 +76,8 @@ public class SignupController {
         ra.addFlashAttribute("newguest", person);
 
         ps.storeParticipant(person);
+
+        Login.userLogIn(request, password, request.getParameter("phonenumber"));
 
         return "redirect:" + "confirmed";
     }

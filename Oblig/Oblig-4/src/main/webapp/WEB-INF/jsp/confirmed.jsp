@@ -21,7 +21,7 @@
     <p>Gender: ${newguest.gender}</p>
 
     <form action="confirmed" method="post">
-        <button name = "viewList" class="button">Login</button>
+        <button name = "viewList" class="button">View List</button>
     </form>
 </body>
 </html>
